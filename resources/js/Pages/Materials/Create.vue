@@ -7,7 +7,8 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 
 const form = useForm({
-    material_name: ''
+    material_name: '',
+    state: ''
 });
 
 const submit = () => {
@@ -40,6 +41,15 @@ const submit = () => {
                                 <TextInput id="material_name" type="text" class="mt-1 block w-full" v-model="form.material_name" required
                                     autofocus />
                                 <InputError class="mt-2" :message="form.errors.material_name" />
+                            </div>
+
+                            <div class="mb-4">
+                                <InputLabel for="state" value="State" class="dark:text-gray-300" />
+                                <select id="state" class="mt-1 block w-full" v-model="form.state">
+                                    <option :value="true">Active</option>
+                                    <option :value="false">Inactive</option>
+                                </select>
+                                <InputError class="mt-2" :message="form.errors.state" />
                             </div>
 
                             <div class="flex items-center justify-end mt-4">

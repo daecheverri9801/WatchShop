@@ -17,7 +17,9 @@ class MaterialFactory extends Factory
     public function definition(): array
     {
         return [
-            'material_name' => $this->faker->unique()
+            'material_name' => $this->faker->unique(),
+            'state' => $this->faker->boolean(80), // 80% chance of being true
+
         ];
     }
 }

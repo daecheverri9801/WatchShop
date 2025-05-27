@@ -22,7 +22,8 @@ class MaterialRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['string', 'required', 'max:50']
+            'name' => ['string', 'required', 'max:50'],
+            'state' => ['boolean']
         ];
     }
 }

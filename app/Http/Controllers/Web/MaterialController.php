@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Material;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Mail\MaterialDeleted;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
+
 
 class MaterialController extends Controller
 {
@@ -35,6 +39,7 @@ class MaterialController extends Controller
     {
         $validate = $request->validate([
             'material_name' => 'required|string|max:50',
+            'state' => 'boolean',
         ]);
 
         Material::create($validate);
@@ -69,6 +74,7 @@ class MaterialController extends Controller
     {
         $validate = $request->validate([
             'material_name' => 'required|string|max:50',
+            'state' => 'boolean',
         ]);
 
         $material->update($validate);
@@ -81,8 +87,8 @@ class MaterialController extends Controller
      */
     public function destroy(Material $material)
     {
+        Mail::to('destinatario@ejemplo.com')->send(new MaterialDeleted($material));
         $material->delete();
-
         return redirect()->route('materials.index')->with('message', 'Material deleted successfully.');
     }
 }

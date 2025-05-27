@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MaterialRequest;
 use App\Models\Material;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Log;
-use App\Mail\MaterialDeleted;
+
 
 
 
@@ -56,20 +54,9 @@ class MaterialController extends Controller
      */
     public function destroy($id)
     {
-        // Material::findOrFail($id)->delete();
-        // return response()->json(['status' => true, 'message' => 'Delete successfully']);
+        Material::findOrFail($id)->delete();
+        return response()->json(['status' => true, 'message' => 'Delete successfully']);
 
-        $material = Material::findOrFail($id);
-        $materialCopy = clone $material;
-        $material->delete();
-
-        try {
-            Mail::to('test@example.com')->send(new MaterialDeleted($materialCopy));
-            Log::info('✅ Correo enviado desde método destroy');
-        } catch (\Exception $e) {
-            Log::error('❌ Error al enviar el correo: ' . $e->getMessage());
-        }
-
-        return response()->json(['status' => true, 'message' => 'Deleted successfully']);
+        
     }
 }

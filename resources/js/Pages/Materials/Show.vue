@@ -41,6 +41,11 @@ const props = defineProps({
                                     <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Name</p>
                                     <p class="mt-1 text-sm text-gray-900 dark:text-white">{{ materials.material_name }}</p>
                                 </div>
+
+                                <div>
+                                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">State</p>
+                                    <p class="mt-1 text-sm text-gray-900 dark:text-white">{{ materials.state ? 'Active' : 'Inactive' }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>

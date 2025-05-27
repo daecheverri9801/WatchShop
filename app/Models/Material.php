@@ -13,6 +13,7 @@ class Material extends Model
 
     protected $fillable = [
         'material_name',
+        'state',
     ];
 
     public function products()
